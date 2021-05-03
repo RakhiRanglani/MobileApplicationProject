@@ -5,8 +5,11 @@
              Title="Reminder">
     <!-- Layout children vertically -->
     <StackLayout Margin="20">
-        <Editor Placeholder="Enter your note"
+        <Editor Placeholder="Enter your Product"
                 Text="{Binding Text}"
+                HeightRequest="100" />
+        <Editor Placeholder="Enter your ExpiryDate"
+                Text="{Binding ExpiryDate}"
                 HeightRequest="100" />
         <!-- Layout children in two columns -->
         <Grid ColumnDefinitions="*,*">

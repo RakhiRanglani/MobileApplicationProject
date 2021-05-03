@@ -24,6 +24,8 @@
                 <StackLayout>
                     <Label Text="{Binding Text}"
                            FontSize="Medium"/>
+                    <Label Text="{Binding ExpiryDate}"
+                           FontSize="Medium"/>
                     <Label Text="{Binding Date}"
                            TextColor="Silver"
                            FontSize="Small" />
