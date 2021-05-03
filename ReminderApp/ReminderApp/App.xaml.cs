@@ -9,20 +9,20 @@ namespace ReminderApp
 {
     public partial class App : Application
     {
-        //static ReminderPageDatabase database;
+        static ReminderPageDatabase database;
 
-        //// Create the database connection as a singleton.
-        //public static ReminderPageDatabase Database
-        //{
-        //    get
-        //    {
-        //        if (database == null)
-        //        {
-        //            database = new ReminderPageDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
-        //        }
-        //        return database;
-        //    }
-        //}
+        // Create the database connection as a singleton.
+        public static ReminderPageDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new ReminderPageDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
+                }
+                return database;
+            }
+        }
 
         public static string FolderPath { get; internal set; }
 

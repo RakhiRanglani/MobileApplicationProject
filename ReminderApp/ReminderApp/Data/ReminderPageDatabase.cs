@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReminderApp.Data
 {
-   public class ReminderPageDatabase
+    public class ReminderPageDatabase
     {
         readonly SQLiteAsyncConnection database;
 
@@ -27,13 +27,13 @@ namespace ReminderApp.Data
         {
             // Get a specific note.
             return database.Table<Reminder>()
-                            .Where(i => i.Filename !=null)
+                            .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }
 
         public Task<int> SaveNoteAsync(Reminder note)
         {
-            if (note.Filename!=null)
+            if (note.ID != 0)
             {
                 // Update an existing note.
                 return database.UpdateAsync(note);
