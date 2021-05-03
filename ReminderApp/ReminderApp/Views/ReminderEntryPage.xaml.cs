@@ -27,7 +27,10 @@ namespace ReminderApp.Views
             InitializeComponent();
 
             // Set the BindingContext of the page to a new Note.
-            BindingContext = new Reminder();
+            BindingContext = new Reminder()
+            {
+                ExpiryDate = DateTime.Now,
+            };
         }
 
         async void LoadNote(string itemId)
@@ -35,6 +38,7 @@ namespace ReminderApp.Views
             try
             {
                 int id = Convert.ToInt32(itemId);
+                
                 // Retrieve the note and set it as the BindingContext of the page.
                 Reminder note = await App.Database.GetNoteAsync(id);
                 BindingContext = note;
@@ -49,6 +53,19 @@ namespace ReminderApp.Views
         {
             var note = (Reminder)BindingContext;
             note.Date = DateTime.UtcNow;
+            if (note.IsSMS)
+            {
+                note.selection = "Notify via SMS";
+            }
+            else if (note.IsEmail)
+            {
+                note.selection = "Notify via Email";
+            }
+            else
+            {
+                note.selection = "Notify via Reminder";
+            }
+           
             if (!string.IsNullOrWhiteSpace(note.Text))
             {
                 await App.Database.SaveNoteAsync(note);

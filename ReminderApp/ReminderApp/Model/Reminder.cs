@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace ReminderApp.Model
@@ -12,6 +13,15 @@ namespace ReminderApp.Model
         public string Text { get; set; }
         public DateTime Date { get; set; }
 
-        public string ExpiryDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
+
+        public string selection { get; set; }
+        public bool IsSMS { get; set; }
+
+        public bool IsEmail { get; set; }
+
+        public bool IsReminderNotification { get; set; }
+      
+
     }
 }

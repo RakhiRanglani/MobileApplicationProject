@@ -2,15 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ReminderApp.Views.ReminderEntryPage"
-             Title="Reminder">
+             Title="Enter your Product Details">
     <!-- Layout children vertically -->
     <StackLayout Margin="20">
-        <Editor Placeholder="Enter your Product"
-                Text="{Binding Text}"
-                HeightRequest="100" />
-        <Editor Placeholder="Enter your ExpiryDate"
-                Text="{Binding ExpiryDate}"
-                HeightRequest="100" />
+        <Label Text="Enter the Name Of Product" FontSize="Subtitle"/>
+        <Editor Placeholder="Product" Text="{Binding Text}" VerticalOptions="Start"/>
+        <Label Text="Enter Expiry Date of Product"  FontSize="Subtitle"/>
+        <DatePicker Format="D"  VerticalOptions="Start"  Date = "{Binding ExpiryDate}" Margin="5, 0" />
+        <Label Text="How do you want to get notified?"  FontSize="Subtitle" VerticalOptions="Start"/>
+
+        <RadioButton GroupName="selectedNotification" Value="{Binding selection}" Content="SMS" IsChecked="{Binding IsSMS}"/>
+
+        <RadioButton GroupName="selectedNotification"  Value="{Binding selection}" Content="EMAIL" IsChecked="{Binding IsEmail}" />
+
+        <RadioButton GroupName="selectedNotification" Value="{Binding selection}" Content="LOCAL NOTIFICATION" IsChecked="{Binding IsReminderNotification}"/>
         <!-- Layout children in two columns -->
         <Grid ColumnDefinitions="*,*">
             <Button Text="Save"
