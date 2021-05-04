@@ -19,8 +19,8 @@ namespace ReminderApp.Views
         }
         async void OnButtonClicked(object sender, EventArgs e)
         {
-            // Launch the specified URL in the system browser.
-            await Launcher.OpenAsync("https://aka.ms/xamarin-quickstart");
+            await Navigation.PushAsync(new ReminderEntryPage());
+            
         }
     }
 }

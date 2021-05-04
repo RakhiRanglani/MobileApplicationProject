@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ReminderApp.Views.AboutPage" Title="About">
+             x:Class="ReminderApp.Views.AboutPage" Title="About Remind Me App">
     <!-- Layout children in two rows -->
     <Grid RowDefinitions="Auto,*">
-        <Image Source="xamarin_logo.png"
-               BackgroundColor="{OnPlatform iOS=LightSlateGray, Android=#2196F3}"
+        <Image BackgroundColor="{OnPlatform iOS=LightSlateGray, Android=#2196F3}"
                VerticalOptions="Center"
                HeightRequest="64" />
         <!-- Layout children vertically -->
@@ -16,7 +15,7 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>
-                            <Span Text="Notes"
+                            <Span Text="Remind Me"
                                   FontAttributes="Bold"
                                   FontSize="22" />
                             <Span Text=" v1.0" />
@@ -24,8 +23,19 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Text="This app is written in XAML and C# with the Xamarin Platform." />
-            <Button Text="Learn more"
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="This app is useful for the people who recently migrated in Ireland ! You can Enter more about the Product details , Enter Expiry Date and Set the notification for the user so that user get notified till the time product get Expired."
+                                TextColor="Navy"  FontSize="Medium" />
+                            <Span Text="User can get notified via 3 ways  which are Email , SMS , Local Notification ." TextColor="Navy" FontSize="Medium"></Span>
+                        </FormattedString.Spans>
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Text="Click here to start using this App" 
                     Clicked="OnButtonClicked" />
         </StackLayout>
     </Grid>

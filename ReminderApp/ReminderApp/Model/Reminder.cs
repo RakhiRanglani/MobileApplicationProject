@@ -20,8 +20,10 @@ namespace ReminderApp.Model
 
         public bool IsEmail { get; set; }
 
+        public string emailId { get; set; }
+        public string phonenumber { get; set; }
         public bool IsReminderNotification { get; set; }
-      
+
 
     }
 }

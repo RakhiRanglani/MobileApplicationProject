@@ -9,13 +9,15 @@
         <Editor Placeholder="Product" Text="{Binding Text}" VerticalOptions="Start"/>
         <Label Text="Enter Expiry Date of Product"  FontSize="Subtitle"/>
         <DatePicker Format="D"  VerticalOptions="Start"  Date = "{Binding ExpiryDate}" Margin="5, 0" />
+        <Editor Placeholder="Enter Phone Number" Text="{Binding phonenumber}"  VerticalOptions="Start"></Editor>
+        <Editor Placeholder="Enter Email Id" Text="{Binding emailId}"  VerticalOptions="Start"></Editor>
         <Label Text="How do you want to get notified?"  FontSize="Subtitle" VerticalOptions="Start"/>
-
         <RadioButton GroupName="selectedNotification" Value="{Binding selection}" Content="SMS" IsChecked="{Binding IsSMS}"/>
 
         <RadioButton GroupName="selectedNotification"  Value="{Binding selection}" Content="EMAIL" IsChecked="{Binding IsEmail}" />
 
         <RadioButton GroupName="selectedNotification" Value="{Binding selection}" Content="LOCAL NOTIFICATION" IsChecked="{Binding IsReminderNotification}"/>
+      
         <!-- Layout children in two columns -->
         <Grid ColumnDefinitions="*,*">
             <Button Text="Save"

@@ -11,7 +11,6 @@ namespace ReminderApp
         public AppShell()
         {
             InitializeComponent();
-//Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
            Routing.RegisterRoute(nameof(ReminderEntryPage), typeof(ReminderEntryPage));
         }
     }

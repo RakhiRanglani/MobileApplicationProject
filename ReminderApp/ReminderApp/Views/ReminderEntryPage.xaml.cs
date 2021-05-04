@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -51,6 +51,9 @@ namespace ReminderApp.Views
                 // Retrieve the note and set it as the BindingContext of the page.
                 Reminder note = await App.Database.GetNoteAsync(id);
                 BindingContext = note;
+
+                // After loading all the notes form the SQLlite activate Email and SMs Functionality.
+                LoadAllReminder();
             }
             catch (Exception)
             {
@@ -92,6 +95,62 @@ namespace ReminderApp.Views
             catch (Exception ex)
             {
                 Console.WriteLine("{0} Exception caught.", ex);
+            }
+        }
+        async void LoadAllReminder()
+        {
+            try
+            {
+                // Retrieve the note and set it as the BindingContext of the page.
+                List<Reminder> reminderlist = await App.Database.GetNotesAsync();
+                List<string> recepientList = new List<string>();
+                foreach (var item in reminderlist)
+                {
+                    recepientList.Add(item.emailId);
+                    if (DateTime.Now.Date < item.ExpiryDate)
+                    {
+                        if (item.IsEmail)
+                        {
+                            try
+                            {
+                                var message = new EmailMessage
+                                {
+                                    Subject = "Expiry Alert",
+                                    Body = "Your Product" + item.Text + "is about to get Expired. The expiry date is " + item.ExpiryDate.ToShortDateString() + "Utlize your Product before it is too late.",
+                                    To = recepientList
+                                };
+                                await Email.ComposeAsync(message);
+                            }
+                            catch (FeatureNotSupportedException fbsEx)
+                            {
+                                Console.WriteLine("{0} Exception caught.", fbsEx);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("{0} Exception caught.", ex);
+                            }
+
+                        }
+                        else if (item.IsSMS)
+                        {
+                            try
+                            {
+                                var messageText = "Your Product is about to get Expired. The expiry date is " + item.ExpiryDate.ToShortDateString() + "Utlize your Product before it is too late.";
+                                var message = new SmsMessage(messageText, new[] { Convert.ToString(item.phonenumber) });
+                                await Sms.ComposeAsync(message);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("{0} Exception caught.", ex);
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Failed to load note.");
             }
         }
 
