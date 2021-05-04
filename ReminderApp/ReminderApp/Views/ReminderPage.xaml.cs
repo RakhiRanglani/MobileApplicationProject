@@ -14,6 +14,7 @@ namespace ReminderApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReminderPage : ContentPage
     {
+
         public ReminderPage()
         {
             InitializeComponent();
@@ -43,6 +44,6 @@ namespace ReminderApp.Views
             await Shell.Current.GoToAsync(nameof(ReminderEntryPage));
         }
 
-       
+
     }
 }

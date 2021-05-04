@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReminderApp.Android", "Remi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReminderApp.iOS", "ReminderApp\ReminderApp.iOS\ReminderApp.iOS.csproj", "{B2F1F05C-130B-4C19-8FFE-822463FFD67C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReminderApp", "ReminderApp\ReminderApp\ReminderApp.csproj", "{84B23334-1E5A-4A1B-84AA-AF7518712519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReminderApp", "ReminderApp\ReminderApp\ReminderApp.csproj", "{84B23334-1E5A-4A1B-84AA-AF7518712519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

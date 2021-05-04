@@ -14,6 +14,8 @@ namespace ReminderApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReminderEntryPage : ContentPage
     {
+        INotificationManager notificationManager;
+        int notificationNumber = 0;
         public string ItemId
         {
             set
@@ -31,6 +33,13 @@ namespace ReminderApp.Views
             {
                 ExpiryDate = DateTime.Now,
             };
+
+            notificationManager = DependencyService.Get<INotificationManager>();
+            notificationManager.NotificationReceived += (sender, eventArgs) =>
+            {
+                var evtData = (NotificationEventArgs)eventArgs;
+                ShowNotification(evtData.Title, evtData.Message);
+            };
         }
 
         async void LoadNote(string itemId)
@@ -38,7 +47,7 @@ namespace ReminderApp.Views
             try
             {
                 int id = Convert.ToInt32(itemId);
-                
+
                 // Retrieve the note and set it as the BindingContext of the page.
                 Reminder note = await App.Database.GetNoteAsync(id);
                 BindingContext = note;
@@ -51,28 +60,39 @@ namespace ReminderApp.Views
 
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            var note = (Reminder)BindingContext;
-            note.Date = DateTime.UtcNow;
-            if (note.IsSMS)
+            try
             {
-                note.selection = "Notify via SMS";
-            }
-            else if (note.IsEmail)
-            {
-                note.selection = "Notify via Email";
-            }
-            else
-            {
-                note.selection = "Notify via Reminder";
-            }
-           
-            if (!string.IsNullOrWhiteSpace(note.Text))
-            {
-                await App.Database.SaveNoteAsync(note);
-            }
+                var note = (Reminder)BindingContext;
+                note.Date = DateTime.UtcNow;
+                if (note.IsSMS)
+                {
+                    note.selection = "Notify via SMS";
+                }
+                else if (note.IsEmail)
+                {
+                    note.selection = "Notify via Email";
+                }
+                else
+                {
+                    note.selection = "Notify via Reminder";
+                }
 
-            // Navigate backwards
-            await Shell.Current.GoToAsync("..");
+                if (!string.IsNullOrWhiteSpace(note.Text))
+                {
+                    await App.Database.SaveNoteAsync(note);
+                }
+                // schedule Notification 
+                if (note.IsReminderNotification)
+                {
+                    NotifyUser(note);
+                }
+                // Navigate backwards
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0} Exception caught.", ex);
+            }
         }
 
         async void OnDeleteButtonClicked(object sender, EventArgs e)
@@ -82,6 +102,32 @@ namespace ReminderApp.Views
 
             // Navigate backwards
             await Shell.Current.GoToAsync("..");
+        }
+        private void NotifyUser(Reminder note)
+        {
+            try
+            {
+                var sendDate = note.ExpiryDate.Date.AddDays(-1);
+                notificationNumber++;
+                string title = $"Be Alert #{notificationNumber}";
+                string message = $"Your Product {note.Text} is Expiring on {note.ExpiryDate}!";
+                notificationManager.SendNotification(title, message, sendDate);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0} Exception caught.", e);
+            }
+        }
+        void ShowNotification(string title, string message)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var msg = new Label()
+                {
+                    Text = $"Notification Received:\nTitle: {title}\nMessage: {message}"
+                };
+                //stackLayout.Children.Add(msg);
+            });
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ReminderApp.Data
     {
         readonly SQLiteAsyncConnection database;
 
+
         public ReminderPageDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
@@ -31,6 +32,7 @@ namespace ReminderApp.Data
                             .FirstOrDefaultAsync();
         }
 
+       
         public Task<int> SaveNoteAsync(Reminder note)
         {
             if (note.ID != 0)
