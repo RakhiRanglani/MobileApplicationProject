@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ReminderApp.Views.ReminderEntryPage"
-             Title="Enter your Product Details">
+             Title="Enter your Product Details" BackgroundColor="Silver">
     <!-- Layout children vertically -->
     <StackLayout Margin="20">
         <Label Text="Enter the Name Of Product" FontSize="Subtitle"/>
@@ -21,10 +21,10 @@
         <!-- Layout children in two columns -->
         <Grid ColumnDefinitions="*,*">
             <Button Text="Save"
-                    Clicked="OnSaveButtonClicked" />
+                    Clicked="OnSaveButtonClicked" BackgroundColor="Blue"/>
             <Button Grid.Column="1"
                     Text="Delete"
-                    Clicked="OnDeleteButtonClicked"/>
+                    Clicked="OnDeleteButtonClicked" BackgroundColor="Blue"/>
         </Grid>
     </StackLayout>
 </ContentPage>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ReminderApp.Views.AboutPage" Title="About Remind Me App">
+             x:Class="ReminderApp.Views.AboutPage" Title="About Remind Me App" BackgroundColor="Silver">
     <!-- Layout children in two rows -->
     <Grid RowDefinitions="Auto,*">
        
@@ -25,15 +25,15 @@
                     <FormattedString>
                         <FormattedString.Spans>
                             <Span Text="This app is useful for the people who recently migrated in Ireland ! You can Enter more about the Product details , Enter Expiry Date and Set the notification for the user so that user get notified till the time product get Expired."
-                                TextColor="Navy"  FontSize="Medium" />
-                            <Span Text="User can get notified via 3 ways  which are Email , SMS , Local Notification ." TextColor="Navy" FontSize="Medium"></Span>
+                                TextColor="Navy"  FontSize="Medium" FontAttributes="Italic" />
+                            <Span Text="User can get notified via 3 ways  which are Email , SMS , Local Notification ." TextColor="Navy" FontSize="Medium" FontAttributes="Italic"></Span>
                         </FormattedString.Spans>
 
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
             <Button Text="Click here to start using this App" 
-                    Clicked="OnButtonClicked" />
+                    Clicked="OnButtonClicked" BackgroundColor="Blue" Margin="10"/>
         </StackLayout>
     </Grid>
 </ContentPage>
