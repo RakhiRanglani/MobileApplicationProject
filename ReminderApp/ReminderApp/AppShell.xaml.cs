@@ -12,6 +12,7 @@ namespace ReminderApp
         {
             InitializeComponent();
            Routing.RegisterRoute(nameof(ReminderEntryPage), typeof(ReminderEntryPage));
+           
         }
     }
 }

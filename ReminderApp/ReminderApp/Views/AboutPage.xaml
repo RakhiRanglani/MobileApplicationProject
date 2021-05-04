@@ -4,14 +4,11 @@
              x:Class="ReminderApp.Views.AboutPage" Title="About Remind Me App">
     <!-- Layout children in two rows -->
     <Grid RowDefinitions="Auto,*">
-        <Image BackgroundColor="{OnPlatform iOS=LightSlateGray, Android=#2196F3}"
-               VerticalOptions="Center"
-               HeightRequest="64" />
+       
         <!-- Layout children vertically -->
         <StackLayout Grid.Row="1"
-                     Margin="20"
-                     Spacing="20">
-            <Label FontSize="22">
+                     Margin="5">
+            <Label FontSize="1">
                 <Label.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>

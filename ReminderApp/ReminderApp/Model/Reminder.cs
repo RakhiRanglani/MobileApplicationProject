@@ -13,6 +13,7 @@ namespace ReminderApp.Model
         public string Text { get; set; }
         public DateTime Date { get; set; }
 
+        public string emptytext { get; set; }
         public DateTime ExpiryDate { get; set; }
 
         public string selection { get; set; }

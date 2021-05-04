@@ -5,6 +5,8 @@
              Title="Product Entered">
     <!-- Add an item to the toolbar -->
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete All"
+                     Clicked="OnDeleteAllClick" />
         <ToolbarItem Text="Add"
                      Clicked="OnAddClicked" />
     </ContentPage.ToolbarItems>
@@ -30,6 +32,9 @@
                     <Label Text="{Binding Date}"
                            TextColor="Silver"
                            FontSize="Small" />
+                    <Label Text="{Binding emptytext}"
+                           TextColor="Black"
+                           FontSize="Medium" />
                    </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
